@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
 import pickle
 import json
+import sklearn
 import numpy as np
 
-with open("model.pkl", "rb") as model_file:
-    loaded_model = pickle.load(model_file)
+loaded_model = pickle.load(open('model.pkl','rb'))
 
 app = Flask(__name__)
 
@@ -26,9 +26,9 @@ def home():
         specs = int(request.form['specs'])
         mbap = int(request.form['mbap'] )
 
-        input_list = [[gender, sscp, sscb, hscp, hscb, degp, wex, etest, specs, mbap, hsca, hscs, degto, degts]]
+        X= [[gender, sscp, sscb, hscp, hscb, degp, wex, etest, specs, mbap, hsca, hscs, degto, degts]]
 
-        prediction = loaded_model.predict(input_list)
+        prediction = loaded_model.predict(X)
         prediction = prediction[0]
         int64_value = np.int64(prediction)
         python_integer = int(int64_value)
