@@ -4,7 +4,8 @@ import json
 import sklearn
 import numpy as np
 
-loaded_model = pickle.load(open('model.pkl','rb'))
+loaded_model = pickle.load(open('model.pkl', 'rb'))
+print(">>>>>>>>>>", loaded_model)
 
 app = Flask(__name__)
 
@@ -34,10 +35,13 @@ def home():
         python_integer = int(int64_value)
 
         if python_integer == 1 :
-            return render_template('P.html')
+            # return render_template('P.html')
+            return render_template('index.html', placed = True)
         else:
-            return render_template('NP.html')
-    return render_template('index.html')
+            # return render_template('NP.html')
+            return render_template('index.html', placed = False)
+        
+    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -37,7 +37,7 @@
 
 <title>Placement Prediction</title>
 </head>
-<body>
+<body onload="showresult()">
   <div class="container">
     <h2>Placement Prediction</h2>
     <form method="post">
@@ -146,6 +146,22 @@
 
       <button type="submit" value="Submit">Submit</button>
     </form>
+
+    <div class="resultDiv"></div>
+
+    <script>
+      function showresult() {
+        let resultDiv = document.querySelector(".resultDiv")
+        if ("{{ placed }}" == "True") {
+          resultDiv.innerHTML = "You are placed"
+        } else if ("{{ placed }}" == "False") {
+          resultDiv.innerHTML = "You are a failure and a disappointment"
+        } else {
+          // nothing
+        }
+      }
+
+    </script>
   </div>
 </body>
 </html>
